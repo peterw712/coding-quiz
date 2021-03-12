@@ -1,8 +1,8 @@
 var timerEl = document.getElementById('countdown');
 var startBtn = document.getElementById('start');
-var wrongBtn = document.getElementById('wrong-answer')
-var rightBtn = document.getElementById('right-answer')
-var nextBtn = document.getElementById('next-question')
+var wrongBtn = document.getElementById('wrong-answer');
+var rightBtn = document.getElementById('right-answer');
+var nextBtn = document.getElementById('next-question');
 
 var timeLeft = 75;
 
@@ -38,11 +38,31 @@ function countdown() {
       document.getElementById("wrong-answer").innerHTML = "Wrong Answer 2"
       document.getElementById("right-answer").innerHTML = "Right Answer 2"
   }
+  
+  function disableWrongBtn() {
+    wrongBtn.disabled = true;
+}
+
+function disableRightBtn() {
+    rightBtn.disabled = true;
+}
+
+function enableWrongBtn() {
+    wrongBtn.disabled = false;
+}
+
+function enableRightBtn() {
+    rightBtn.disabled = false;
+}
 
   startBtn.onclick = countdown;
-  wrongBtn.addEventListener("click", displayWrongMessage)
-  wrongBtn.addEventListener("click", decrementByFifteen)
-  rightBtn.onclick = displayRightMessage;
-  nextBtn.onclick = nextQuestion;
+  wrongBtn.addEventListener("click", displayWrongMessage);
+  wrongBtn.addEventListener("click", decrementByFifteen);
+  wrongBtn.addEventListener("click", disableWrongBtn);
+  rightBtn.addEventListener("click", displayRightMessage);
+  rightBtn.addEventListener("click", disableRightBtn);
+  nextBtn.addEventListener("click", nextQuestion);
+  nextBtn.addEventListener("click", enableWrongBtn);
+  nextBtn.addEventListener("click", enableRightBtn);
   
   

@@ -1,0 +1,6 @@
+.container #countdown {text-align: right;}
+
+.quiz-buttons {
+    display: flex;
+    flex-direction: column;
+}

@@ -132,7 +132,8 @@ function startFunctions() {
 
 function wrongFunctions() {
     result.innerHTML = "Incorrect.";
-    decrementByFifteen();
+    if (timeLeft > 0) {
+    decrementByFifteen()};
     disableChoices();
     nextBtn.disabled = false;
     result.style.display = 'block';

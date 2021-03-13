@@ -57,15 +57,7 @@ function countdown() {
     }, 1000);
   }
 
-// if an answer is incorrect
-  function displayWrongMessage() {
-    result.innerHTML = "Incorrect.";
-  }
-// if an answer is correct
-  function displayRightMessage() {
-    result.innerHTML = "Correct!";
-  }
-  // arrays for possible answers for each question
+ // arrays for possible answers for each question
   var wrongAnswers1 = ['1a', '2a', '3a', '4a']
   var wrongAnswers2 = ['1b', '2b', '3b', '4b']
   var wrongAnswers3 = ['1c', '2c', '3c', '4c']
@@ -96,8 +88,10 @@ function countdown() {
       question.innerHTML = questions[i];
       i++;
       // display score and hide other elements after the last question
+      if (i === 4) {
+          nextBtn.innerHTML = 'Finish'
+      }
       if (i > 4) {
-        score.innerHTML = timeLeft.toString();
         question.style.display = 'none';
         wrongBtn1.style.display = 'none';
         wrongBtn2.style.display = 'none';
@@ -106,12 +100,17 @@ function countdown() {
         nextBtn.style.display = 'none';
         result.style.display = 'none'
         timerEl.style.display = 'none'
+        if (timeLeft > 0) {
+            score.innerHTML = timeLeft.toString();
+            }
+            else {score.innerHTML = '0'}
       }
     }
 
-var choices = [rightBtn, wrongBtn1, wrongBtn2, wrongBtn3];
 
 //enabling choices and disabling next button, or disabling choices and enabling next button
+
+var choices = [rightBtn, wrongBtn1, wrongBtn2, wrongBtn3];
 
 function disableChoices() {
     for (var i = 0; i < choices.length; i++)
@@ -123,14 +122,6 @@ function enableChoices() {
     {choices[i].disabled = false; }
 }
 
-function disableNext() {
-    nextBtn.disabled = true;
-}
-
-function enableNext() {
-    nextBtn.disabled = false;
-}
-
 //functions to be executed on click
 
 function startFunctions() {
@@ -140,23 +131,26 @@ function startFunctions() {
 }
 
 function wrongFunctions() {
-    displayWrongMessage();
+    result.innerHTML = "Incorrect.";
     decrementByFifteen();
     disableChoices();
-    enableNext();
+    nextBtn.disabled = false;
+    result.style.display = 'block';
 }
 
 function rightFunctions() {
-    displayRightMessage();
+    result.innerHTML = "Correct!";
     disableChoices();
-    enableNext();
+    nextBtn.disabled = false;
+    result.style.display = 'block';
 }
 
 function nextFunctions() {
     nextQuestion();
     enableChoices();
-    disableNext();
     randomizeOrder();
+    nextBtn.disabled = true;
+    result.style.display = 'none';
 }
 
   startBtn.addEventListener("click", startFunctions);

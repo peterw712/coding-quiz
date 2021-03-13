@@ -2,5 +2,7 @@
 
 .quiz-buttons {
     display: flex;
+    width: 50%;
     flex-direction: column;
+    row-gap: 1em;
 }

@@ -10,15 +10,16 @@ var question = document.getElementById('question');
 var result = document.getElementById('result')
 var score1 = document.getElementById('score1')
 var score2 = document.getElementById('score2')
-score2.style.display = "none"
+score2.style.display = 'none'
 
 // only display start button on load
-question.style.display = "none"
-wrongBtn1.style.display = "none"
-wrongBtn2.style.display = "none"
-wrongBtn3.style.display = "none"
-rightBtn.style.display = "none"
-nextBtn.style.display = "none"
+question.style.display = 'none'
+wrongBtn1.style.display = 'none'
+wrongBtn2.style.display = 'none'
+wrongBtn3.style.display = 'none'
+rightBtn.style.display = 'none'
+nextBtn.style.display = 'none'
+document.getElementById('try-again').style.display = 'none'
 // next button starts out disabled for first question
 nextBtn.disabled = true
 
@@ -59,12 +60,12 @@ function countdown() {
   }
 
  // arrays for possible answers for each question
-  var wrongAnswers1 = ['1a', '2a', '3a', '4a']
-  var wrongAnswers2 = ['1b', '2b', '3b', '4b']
-  var wrongAnswers3 = ['1c', '2c', '3c', '4c']
-  var rightAnswers = ['correct1', 'correct2', 'correct3', 'correct4']
+  var wrongAnswers1 = ['booleans', 'square brackets', 'booleans', 'terminal / bash']
+  var wrongAnswers2 = ['numbers', 'curly brackets', 'numbers', 'for loops']
+  var wrongAnswers3 = ['strings', 'quotes', 'strings', 'JavaScript']
+  var rightAnswers = ['alerts', 'parentheses', 'all of these choices', 'console log']
 // array for questions
-  var questions = ['can you get this right? 1', 'can you get this right? 2', 'can you get this right? 3', 'can you get this right? 4']
+  var questions = ['Commonly used data types DO NOT include:', 'The condition in an if / else statement is enclosed within ____.', 'Arrays in Javascript can be used to store ____.', 'A very useful tool used during debugging is:']
 // randomize choice order
   function randomizeOrder() {
     var randomOrder = (Math.floor(Math.random() * 8));
@@ -101,19 +102,22 @@ function countdown() {
         nextBtn.style.display = 'none';
         result.style.display = 'none'
         timerEl.style.display = 'none'
+        document.getElementById('try-again').style.display = 'block'
         
         if (timeLeft > 0) {
-            score1.innerHTML = timeLeft.toString();
+            score1.innerHTML = 'Your score is: ' + (timeLeft.toString());
+            localStorage.setItem('score1', timeLeft);
             }
             else {
-                score1.innerHTML = '0'
+                score1.innerHTML = 'Your score is: ' + '0';
+                localStorage.setItem('score1', 0);
             }
-            localStorage.setItem('score1', timeLeft);
+            
             score2.style.display = "block"
         }
     }
 
-score2.innerHTML = localStorage.getItem('score1');  
+score2.innerHTML = 'Your previous score is: ' + localStorage.getItem('score1');  
 localStorage.setItem('score2', score2.textContent);
 
 console.log(localStorage);
@@ -138,6 +142,7 @@ function startFunctions() {
     countdown();
     start();
     hideButton();
+    document.getElementById('instructions').style.display = 'none';
 }
 
 function wrongFunctions() {

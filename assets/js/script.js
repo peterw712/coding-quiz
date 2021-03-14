@@ -8,7 +8,9 @@ var rightBtn = document.getElementById('right-answer');
 var nextBtn = document.getElementById('next-question');
 var question = document.getElementById('question');
 var result = document.getElementById('result')
-var score = document.getElementById('score')
+var score1 = document.getElementById('score1')
+var score2 = document.getElementById('score2')
+score2.style.display = "none"
 
 // only display start button on load
 question.style.display = "none"
@@ -99,13 +101,22 @@ function countdown() {
         nextBtn.style.display = 'none';
         result.style.display = 'none'
         timerEl.style.display = 'none'
+        
         if (timeLeft > 0) {
-            score.innerHTML = timeLeft.toString();
+            score1.innerHTML = timeLeft.toString();
             }
-            else {score.innerHTML = '0'}
-      }
+            else {
+                score1.innerHTML = '0'
+            }
+            localStorage.setItem('score1', timeLeft);
+            score2.style.display = "block"
+        }
     }
 
+score2.innerHTML = localStorage.getItem('score1');  
+localStorage.setItem('score2', score2.textContent);
+
+console.log(localStorage);
 
 //enabling choices and disabling next button, or disabling choices and enabling next button
 
@@ -159,6 +170,8 @@ function nextFunctions() {
   wrongBtn3.addEventListener("click", wrongFunctions);
   rightBtn.addEventListener("click", rightFunctions);
   nextBtn.addEventListener("click", nextFunctions);
+
+
 
 
   

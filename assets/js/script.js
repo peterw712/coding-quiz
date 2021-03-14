@@ -1,5 +1,4 @@
 // setting elements as variables
-
 var timerEl = document.getElementById('countdown');
 var startBtn = document.getElementById('start');
 var wrongBtn1 = document.getElementById('wrong-answer1');
